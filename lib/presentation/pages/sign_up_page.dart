@@ -134,6 +134,7 @@ class _SignUpPageState extends State<SignUpPage> {
         passwordController.text.isNotEmpty &&
         confirmPasswordConroller.text.isNotEmpty) {
       if (passwordController.text == confirmPasswordConroller.text) {
+        print("Fefe");
         context.read<AuthBloc>().add(
               SignUp(
                 login: loginController.text,

@@ -36,26 +36,12 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       lastName: lastName,
       password: password,
     );
-    for (var value in userBox.values.map((e) => e.login)) {
-      var index = userBox.values.where((element) => element.login == userName);
-      if (index.isEmpty) {
-        userBox.add(data);
-        emit(state.copyWith(
-          isLoading: false,
-          hasError: false,
-          isLogged: true,
-        ));
-        break;
-      }
-      if (userName == value) {
-        emit(state.copyWith(
-          isLoading: false,
-          hasError: true,
-          error: "This login already exists",
-          isLogged: false,
-        ));
-      }
-    }
+    userBox.add(data);
+    emit(state.copyWith(
+      isLoading: false,
+      hasError: false,
+      isLogged: true,
+    ));
   }
 
   Future<void> _sigIn(SignIn event, Emitter<AuthState> emit) async {
